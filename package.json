@@ -1,0 +1,28 @@
+{
+	"name": "trivia-quiz",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"watch:sass": "node-sass sass/main.scss css/style.css -w",
+		"devserver": "live-server",
+		"start": "npm-run-all --parallel devserver watch:sass",
+		"compile:sass": "node-sass sass/main.scss css/style.comp.css",
+		"prefix:css": "postcss --use autoprefixer -b 'last 10 versions' css/style.comp.css -o css/style.prefix.css",
+		"compress:css": "node-sass css/style.prefix.css css/style.css --output-style compressed",
+		"build:css": "npm-run-all compile:sass prefix:css compress:css"
+	},
+	"author": "Tim Hoover",
+	"license": "ISC",
+	"devDependencies": {
+		"autoprefixer": "^10.2.4",
+		"concat": "^1.0.3",
+		"node-sass": "^5.0.0",
+		"postcss-cli": "^8.3.1"
+	},
+	"dependencies": {
+		"bootstrap": "^5.0.0-beta2",
+		"bootstrap-icons": "^1.4.0",
+		"jquery": "^3.6.0"
+	}
+}

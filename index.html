@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- Google Fonts API -->
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="img/bootstrap-icons.svg" />
+		<link rel="stylesheet" href="css/style.css" />
+		<script defer src="scripts/jquery.js"></script>
+		<script defer src="scripts/app.js"></script>
+		<title>Trivia Game</title>
+	</head>
+	<body>
+		<!-- Start Container -->
+		<div
+			class="container-fluid d-flex vh-100 justify-content-center align-items-center"
+			id="start-container"
+		>
+			<div class="row justify-content-center align-items-center">
+				<div
+					class="col-lg-12 d-flex justify-content-center align-items-center"
+				>
+					<div class="card shadow text-center">
+						<div class="card-body p-5">
+							<h1 class="pt-4 pb-2 text-center fs-1 fw-bold pb-3">
+								Trivia Game
+							</h1>
+							<button
+								class="btn btn-outline-primary text-dark"
+								id="start-btn"
+							>
+								Click here to start
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Start Container -->
+
+		<!-- Quiz Container -->
+		<div
+			class="container-fluid d-flex vh-100 justify-content-center align-items-center"
+			id="quiz-container"
+		>
+			<div class="row justify-content-center align-items-center">
+				<div
+					class="col-md-10 col-lg-8 d-flex justify-content-center align-items-center"
+				>
+					<div class="card shadow bg-white">
+						<div class="card-header p-0">
+							<div class="card-body p-0">
+								<!-- Quiz Title -->
+								<h1 class="card-title pt-4 pb-2 px-4 min-width">
+									Triva Quiz
+								</h1>
+								<!-- End Quiz Title -->
+
+								<!-- Progress Bar -->
+								<div class="progress">
+									<div
+										class="progress-bar bg-warning"
+										role="progressbar"
+										aria-valuenow="100"
+										aria-valuemin="0"
+										aria-valuemax="100"
+									></div>
+								</div>
+								<!-- End Progress Bar -->
+							</div>
+
+							<!-- Quiz Question -->
+							<div class="question">
+								<!-- <h2 class="card-text py-4 px-5"></h2> -->
+							</div>
+							<!-- End Quiz Question -->
+
+							<!-- Quiz Choices -->
+							<!-- Choice 1 -->
+							<div class="choice-list">
+								<label
+									for="choice-1"
+									class="d-flex rounded mb-4 mx-5 py-3 choice-border btn btn-info justify-content-between align-items-center"
+								>
+									<div
+										class="d-flex align-items-center ps-2 choice-container"
+									></div>
+									<!--  Icon -->
+									<div class="icon">
+										<svg
+											class="bi"
+											width="32"
+											height="32"
+											fill="currentColor"
+										>
+											<!-- <use
+											xlink:href="img/bootstrap-icons.svg#check"
+										/> -->
+										</svg>
+									</div>
+									<!-- End Icon -->
+								</label>
+								<!-- End choice 1 -->
+
+								<!-- Choice 2 -->
+								<label
+									for="choice-2"
+									class="d-flex rounded mb-4 mx-5 py-3 choice-border btn btn-info justify-content-between align-items-center"
+								>
+									<div
+										class="d-flex align-items-center ps-2 choice-container"
+									></div>
+
+									<div class="icon">
+										<svg
+											class="bi"
+											width="32"
+											height="32"
+											fill="currentColor"
+										></svg>
+									</div>
+								</label>
+								<!-- End choice 2 -->
+
+								<!-- Choice 3 -->
+								<label
+									for="choice-3"
+									class="d-flex rounded mb-4 mx-5 py-3 choice-border btn btn-info justify-content-between align-items-center"
+								>
+									<div
+										class="d-flex align-items-center ps-2 choice-container"
+									></div>
+
+									<div class="icon">
+										<svg
+											class="bi"
+											width="32"
+											height="32"
+											fill="currentColor"
+										></svg>
+									</div>
+								</label>
+								<!-- End choice 3 -->
+
+								<!-- Choice 4 -->
+								<label
+									for="choice-4"
+									class="d-flex rounded mb-4 mx-5 py-3 btn btn-info justify-content-between align-items-center choice-border"
+								>
+									<div
+										class="d-flex align-items-center ps-2 choice-container"
+									></div>
+
+									<div class="icon">
+										<svg
+											class="bi"
+											width="32"
+											height="32"
+											fill="currentColor"
+										></svg>
+									</div>
+								</label>
+								<!-- End choice 4 -->
+							</div>
+							<!-- End Quiz choices -->
+
+							<!-- Card Footer -->
+							<div
+								class="card-footer py-4 px-5 d-flex justify-content-between align-items-center"
+							>
+								<div class="question-number"></div>
+								<button
+									class="btn btn-primary text-white next-btn"
+								>
+									Next Question
+								</button>
+								<button
+									class="btn btn-primary text-white check-answer"
+								>
+									Check Answer
+								</button>
+								<button
+									class="btn btn-primary text-white finish-btn"
+								>
+									Get Results
+								</button>
+							</div>
+							<!-- End Card Footer -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Quiz Container -->
+
+		<!-- Quiz Results Container -->
+		<div
+			class="container-fluid d-flex vh-100 justify-content-center align-items-center"
+			id="results-container"
+		>
+			<div
+				class="row justify-content-center align-items-center max-width"
+			>
+				<div
+					class="col-lg-12 d-flex justify-content-center align-items-center"
+				>
+					<div class="card shadow text-center min-width">
+						<div class="card-body">
+							<h1
+								class="pt-4 pb-2 px-5 text-center fs-1 fw-bold pb-3"
+							>
+								You finished! 🎉 😄
+							</h1>
+							<div class="results"></div>
+						</div>
+						<div class="card-footer py-4">
+							<button
+								class="btn btn-outline-primary text-dark restart-btn"
+							>
+								Click here to restart quiz
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- End Finish Container -->
+	</body>
+</html>

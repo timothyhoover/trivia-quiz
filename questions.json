@@ -1,0 +1,45 @@
+{
+	"response_code": 0,
+	"results": [
+		{
+			"category": "General Knowledge",
+			"type": "multiple",
+			"difficulty": "medium",
+			"question": "According to the BBPA, what is the most common pub name in the UK?",
+			"correct_answer": "Red Lion",
+			"incorrect_answers": ["Royal Oak", "White Hart", "King&#039;s Head"]
+		},
+		{
+			"category": "General Knowledge",
+			"type": "multiple",
+			"difficulty": "medium",
+			"question": "What is the romanized Japanese word for &quot;university&quot;?",
+			"correct_answer": "Daigaku",
+			"incorrect_answers": ["Toshokan", "Jimusho", "Shokudou"]
+		},
+		{
+			"category": "General Knowledge",
+			"type": "multiple",
+			"difficulty": "medium",
+			"question": "Apple co-founder Steve Jobs died from complications of which form of cancer?",
+			"correct_answer": "Pancreatic",
+			"incorrect_answers": ["Bone", "Liver", "Stomach"]
+		},
+		{
+			"category": "General Knowledge",
+			"type": "multiple",
+			"difficulty": "medium",
+			"question": "Computer manufacturer Compaq was acquired for $25 billion dollars in 2002 by which company?",
+			"correct_answer": "Hewlett-Packard",
+			"incorrect_answers": ["Toshiba", "Asus", "Dell"]
+		},
+		{
+			"category": "General Knowledge",
+			"type": "multiple",
+			"difficulty": "medium",
+			"question": "Where did the pineapple plant originate?",
+			"correct_answer": "South America",
+			"incorrect_answers": ["Hawaii", "Europe", "Asia"]
+		}
+	]
+}

@@ -1,0 +1,21 @@
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+body {
+	box-sizing: border-box;
+}
+
+// ****************************
+// BS Main Color Customization
+// ****************************
+$primary: #62dbc8;
+$secondary: #9330af;
+$warning: #ffd80a;
+$info: #f1f1f1;
+$danger: rgb(192, 27, 27);
+$success: $primary;
