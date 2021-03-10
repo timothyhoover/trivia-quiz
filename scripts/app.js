@@ -154,7 +154,9 @@ const shuffle = array => {
 const evaluateAnswer = () => {
 	checkAnswer.on('click', function () {
 		// Correct Answer
-		if (userChoice == correctAnswer) {
+		if (userChoice === undefined) {
+			alert('You need to select an answer');
+		} else if (userChoice == correctAnswer) {
 			console.log('Correct Answer 🎉');
 			userLabel.addClass('correct');
 			userLabel.append(
@@ -162,7 +164,8 @@ const evaluateAnswer = () => {
 			);
 			$('label').css('pointer-events', 'none');
 			userScore++;
-
+			showNextBtn();
+			userChoice = undefined;
 			// Wrong Answer
 		} else if (userChoice !== correctAnswer) {
 			console.log('Wrong Answer 😞');
@@ -171,7 +174,8 @@ const evaluateAnswer = () => {
 				'<svg class="bi x" width="32" height="32" fill="currentColor"><use xlink:href="img/bootstrap-icons.svg#x"/></svg>'
 			);
 			$('label').css('pointer-events', 'none');
-
+			showNextBtn();
+			userChoice = undefined;
 			// When user selects wrong answer, correct answer is also shown
 			for (let i = 0; i < shuffledOptions.length; i++) {
 				if ($('label').eq(i).children().text() == correctAnswer) {
@@ -184,7 +188,7 @@ const evaluateAnswer = () => {
 				}
 			}
 		}
-		showNextBtn();
+
 		showFinishBtn();
 	});
 };
