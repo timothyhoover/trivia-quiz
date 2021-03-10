@@ -270,7 +270,7 @@ $('.finish-btn').on('click', function () {
 			userScore +
 			' <span>out of</span> ' +
 			questionData.length +
-			' Great job!</p>';
+			'<p class="text-center fs-5"> Great job!</p>';
 		results.html(resultsText);
 	} else {
 		resultsText =
@@ -278,7 +278,7 @@ $('.finish-btn').on('click', function () {
 			userScore +
 			' <span>out of</span> ' +
 			questionData.length +
-			' Good effort! Try again to increase your score!</p>';
+			'<p class="text-center fs-5"> Good effort! Try again to increase your score!</p>';
 		results.html(resultsText);
 	}
 });
