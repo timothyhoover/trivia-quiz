@@ -162,6 +162,7 @@ const evaluateAnswer = () => {
 			);
 			$('label').css('pointer-events', 'none');
 			userScore++;
+
 			// Wrong Answer
 		} else if (userChoice !== correctAnswer) {
 			console.log('Wrong Answer 😞');
@@ -260,7 +261,7 @@ $('.finish-btn').on('click', function () {
 	$('#results-container').removeClass('d-none');
 	$('#quiz-container').addClass('d-none');
 
-	// User Score
+	// User Score Message
 	let resultsText;
 	const results = $('.results');
 	if (userScore > 3) {
