@@ -1,18 +1,17 @@
-// ****************************
-// Bring in necessary elements
-// ****************************
-const $choiceContainer = $('.choice-container');
-const $choiceList = $('.choice-list');
+// ****************
+// Global elements
+// ****************
+const choiceList = $('.choice-list');
 const checkAnswer = $('.check-answer');
 const nextBtn = $('.next-btn');
-let label;
+
+let userChoice;
+let userLabel;
 let questionCount = 0;
 let userScore = 0;
 let currentQuestion;
 let questionData;
-let incorrectAnswers;
 let correctAnswer;
-let allChoices;
 let shuffledOptions;
 
 // ****************************************
@@ -43,7 +42,7 @@ $('#start-btn').click(function () {
 		showCheckBtn();
 		displayQuestionCount(questionCount + 1);
 		progressBar(questionCount);
-		userSelection();
+		evaluateAnswer();
 	});
 });
 
@@ -64,23 +63,68 @@ const showQuestion = index => {
 // ****************
 const showChoices = index => {
 	// Merge correct and incorrect answers
-	incorrectAnswers = questionData[index].incorrect_answers;
+	let incorrectAnswers = questionData[index].incorrect_answers;
 	correctAnswer = questionData[index].correct_answer;
-	allChoices = incorrectAnswers.concat(correctAnswer);
+	let allChoices = incorrectAnswers.concat(correctAnswer);
 	shuffledOptions = shuffle(allChoices);
 
-	// Create Options in HTML
-	for (let i = 0; i < questionData.length; i++) {
-		let answerText = `<input
-										class="me-2"
-										type="radio"
-										name="choice"
-										id="choice-${i + 1}"
-									/><span class="px-2 text-start" id="userAnswer-${i}">${
-			shuffledOptions[i]
-		}</span>`;
-		$choiceContainer.eq(i).html(answerText);
-	}
+	let availableChoices =
+		'<label class="d-flex rounded mb-4 mx-5 py-3 choice-border btn btn-info justify-content-between align-items-center" id="label-1">' +
+		'<div class="d-flex align-items-center ps-2 choice-container">' +
+		'<input class="me-2" type="radio" name="choice" id="choice-1"/>' +
+		'<span class="px-2 text-start" id="userSelection-1">' +
+		shuffledOptions[0] +
+		'</span>' +
+		'</div>' +
+		'</label>' +
+		'<label class="d-flex rounded mb-4 mx-5 py-3 choice-border btn btn-info justify-content-between align-items-center" id="label-2">' +
+		'<div class="d-flex align-items-center ps-2 choice-container">' +
+		'<input class="me-2" type="radio" name="choice" id="choice-2"/>' +
+		'<span class="px-2 text-start" id="userSelection-2">' +
+		shuffledOptions[1] +
+		'</span>' +
+		'</div>' +
+		'</label>' +
+		'<label class="d-flex rounded mb-4 mx-5 py-3 choice-border btn btn-info justify-content-between align-items-center" id="label-3">' +
+		'<div class="d-flex align-items-center ps-2 choice-container">' +
+		'<input class="me-2" type="radio" name="choice" id="choice-3"/>' +
+		'<span class="px-2 text-start" id="userSelection-3">' +
+		shuffledOptions[2] +
+		'</span>' +
+		'</div>' +
+		'</label>' +
+		'<label class="d-flex rounded mb-4 mx-5 py-3 choice-border btn btn-info justify-content-between align-items-center" id="label-4">' +
+		'<div class="d-flex align-items-center ps-2 choice-container">' +
+		'<input class="me-2" type="radio" name="choice" id="choice-4"/>' +
+		'<span class="px-2 text-start" id="userSelection-4">' +
+		shuffledOptions[3] +
+		'</span>' +
+		'</div>' +
+		'</label>';
+
+	choiceList.html(availableChoices);
+
+	let userChoice1 = $('#label-1');
+	let userChoice2 = $('#label-2');
+	let userChoice3 = $('#label-3');
+	let userChoice4 = $('#label-4');
+
+	userChoice1.on('click', function () {
+		userChoice = userChoice1.text();
+		userLabel = userChoice1;
+	});
+	userChoice2.on('click', function () {
+		userChoice = userChoice2.text();
+		userLabel = userChoice2;
+	});
+	userChoice3.on('click', function () {
+		userChoice = userChoice3.text();
+		userLabel = userChoice3;
+	});
+	userChoice4.on('click', function () {
+		userChoice = userChoice4.text();
+		userLabel = userChoice4;
+	});
 };
 
 // ***********************
@@ -102,59 +146,42 @@ const shuffle = array => {
 	return array;
 };
 
-// BUG Not updating user selection, and is saving all the clicked options as answers
-// *********************
-// User Selected Choice
-// *********************
-const userSelection = () => {
-	for (let i = 0; i < questionData.length; i++) {
-		let selectedAnswer = $(`#userAnswer-${i}`).text();
-		const iconX = $('.bi').addClass('x');
-		const iconCheck = $('.bi').addClass('check');
-		label = $('label').addClass(`.userAnswerClass-${i}`);
-		label.eq(i).click(function () {
-			console.log('user selection function: ' + selectedAnswer);
-			evaluateAnswer(
-				selectedAnswer,
-				label.eq(i),
-				iconCheck.eq(i),
-				iconX.eq(i)
-			);
-		});
-	}
-};
-
-// BUG Evaluating all user clicks
 // ****************
 // Evaluate Answer
 // ****************
-const evaluateAnswer = (selection, label, iconCheck, iconX) => {
+const evaluateAnswer = () => {
 	checkAnswer.click(function () {
-		showNextBtn();
-		console.log(selection, correctAnswer);
-		if (selection == correctAnswer) {
+		// Correct Answer
+		if (userChoice == correctAnswer) {
 			console.log('Correct Answer 🎉');
-			label.addClass('correct');
-			iconCheck.html('<use xlink:href="img/bootstrap-icons.svg#check"/>');
+			userLabel.addClass('correct');
+			userLabel.append(
+				'<svg class="bi check" width="32" height="32" fill="currentColor"><use xlink:href="img/bootstrap-icons.svg#check"/></svg>'
+			);
 			$('label').css('pointer-events', 'none');
 			userScore++;
-			console.log(userScore);
-		} else if (selection !== correctAnswer) {
+			// Wrong Answer
+		} else if (userChoice !== correctAnswer) {
 			console.log('Wrong Answer 😞');
-			label.addClass('wrong');
-			iconX.html('<use xlink:href="img/bootstrap-icons.svg#x"/>');
+			userLabel.addClass('wrong');
+			userLabel.append(
+				'<svg class="bi x" width="32" height="32" fill="currentColor"><use xlink:href="img/bootstrap-icons.svg#x"/></svg>'
+			);
 			$('label').css('pointer-events', 'none');
 
 			// When user selects wrong answer, correct answer is also shown
-			// BUG
-			for (let i = 0; i < questionData.length; i++) {
-				if (selection == correctAnswer) {
-					console.log(selection);
+			for (let i = 0; i < shuffledOptions.length; i++) {
+				if ($('label').eq(i).children().text() == correctAnswer) {
 					$('label').eq(i).addClass('correct');
+					$('label')
+						.eq(i)
+						.append(
+							'<svg class="bi check" width="32" height="32" fill="currentColor"><use xlink:href="img/bootstrap-icons.svg#check"/></svg>'
+						);
 				}
 			}
 		}
-
+		showNextBtn();
 		showFinishBtn();
 	});
 };
@@ -178,7 +205,7 @@ const showCheckBtn = () => {
 // ****************
 // Next Question
 // ****************
-nextBtn.click(function () {
+nextBtn.on('click', function () {
 	questionCount++;
 	displayQuestionCount(questionCount + 1);
 	showCheckBtn();
@@ -227,7 +254,7 @@ const showFinishBtn = () => {
 // ***********************
 // Show Results Container
 // ***********************
-$('.finish-btn').click(function () {
+$('.finish-btn').on('click', function () {
 	$('#results-container').removeClass('d-none');
 	$('#quiz-container').addClass('d-none');
 
@@ -270,6 +297,6 @@ const progressBar = index => {
 // *************
 // Restart Quiz
 // *************
-$('.restart-btn').click(function () {
+$('.restart-btn').on('click', function () {
 	location.reload(true);
 });
