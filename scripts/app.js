@@ -17,22 +17,24 @@ let shuffledOptions;
 // ****************************************
 // Show Start Quiz Message When Page Loads
 // ****************************************
-$('document').ready(function () {
-	$('#quiz-container').addClass('d-none');
-	$('#results-container').addClass('d-none');
+jQuery(function ($) {
+	$(window).on('load', function () {
+		$('#quiz-container').addClass('d-none');
+		$('#results-container').addClass('d-none');
 
-	// Display Data from API
-	$.getJSON(
-		'https://opentdb.com/api.php?amount=5&category=9&difficulty=medium&type=multiple'
-	).done(function (data) {
-		questionData = data.results;
+		// Display Data from API
+		$.getJSON(
+			'https://opentdb.com/api.php?amount=5&category=9&difficulty=medium&type=multiple'
+		).done(function (data) {
+			questionData = data.results;
+		});
 	});
 });
 
 // **********
 // Show Quiz
 // **********
-$('#start-btn').click(function () {
+$('#start-btn').on('click', function () {
 	$('#start-container').fadeOut('slow', function () {
 		$('#start-container').addClass('d-none');
 		$('#quiz-container').removeClass('d-none');
@@ -150,7 +152,7 @@ const shuffle = array => {
 // Evaluate Answer
 // ****************
 const evaluateAnswer = () => {
-	checkAnswer.click(function () {
+	checkAnswer.on('click', function () {
 		// Correct Answer
 		if (userChoice == correctAnswer) {
 			console.log('Correct Answer 🎉');
