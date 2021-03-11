@@ -305,5 +305,5 @@ const progressBar = index => {
 // Restart Quiz
 // *************
 $('.restart-btn').on('click', function () {
-	location.reload(true);
+	location.reload();
 });
