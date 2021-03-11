@@ -29,6 +29,12 @@ jQuery(function ($) {
 			questionData = data.results;
 		});
 	});
+	// *************
+	// Restart Quiz
+	// *************
+	$('.restart-btn').on('click', function () {
+		location.reload();
+	});
 });
 
 // **********
@@ -178,6 +184,11 @@ const evaluateAnswer = () => {
 			userChoice = undefined;
 			// When user selects wrong answer, correct answer is also shown
 			for (let i = 0; i < shuffledOptions.length; i++) {
+				console.log({
+					i,
+					label: $('label').eq(i).children().text(),
+					correctAnswer,
+				});
 				if ($('label').eq(i).children().text() == correctAnswer) {
 					$('label').eq(i).addClass('correct');
 					$('label')
@@ -300,10 +311,3 @@ const progressBar = index => {
 		myBar.css('width', `${width}%`);
 	}
 };
-
-// *************
-// Restart Quiz
-// *************
-$('.restart-btn').on('click', function () {
-	location.reload();
-});
