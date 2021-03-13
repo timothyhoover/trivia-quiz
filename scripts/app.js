@@ -162,7 +162,7 @@ const evaluateAnswer = () => {
 		// Correct Answer
 		if (userChoice === undefined) {
 			alert('You need to select an answer');
-		} else if (userChoice == correctAnswer) {
+		} else if (userChoice == he.decode(correctAnswer)) {
 			console.log('Correct Answer 🎉');
 			userLabel.addClass('correct');
 			userLabel.append(
@@ -173,7 +173,7 @@ const evaluateAnswer = () => {
 			showNextBtn();
 			userChoice = undefined;
 			// Wrong Answer
-		} else if (userChoice !== correctAnswer) {
+		} else if (userChoice !== he.decode(correctAnswer)) {
 			console.log('Wrong Answer 😞');
 			userLabel.addClass('wrong');
 			userLabel.append(
@@ -189,7 +189,10 @@ const evaluateAnswer = () => {
 					label: $('label').eq(i).children().text(),
 					correctAnswer,
 				});
-				if ($('label').eq(i).children().text() == correctAnswer) {
+				if (
+					$('label').eq(i).children().text() ==
+					he.decode(correctAnswer)
+				) {
 					$('label').eq(i).addClass('correct');
 					$('label')
 						.eq(i)
